@@ -1,0 +1,584 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "Rest.Main",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_1171085714 { 
+   	label=Players
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Hunter374768242[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Hunter</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   abilityName: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   arrowsCount: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   range: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   tickCount: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ castAbility(gameBoard: GameBoard)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ describe(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ describeLevelingUp(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ levelingUp()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ onTick(player: Player): Position</TD></TR>
+<TR><TD ALIGN="LEFT" >+ specialAbilityInteract(enemy: Enemy)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Mage374768242[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Mage</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   abilityName: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   abilityRange: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   currentMana: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   hitsCount: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   manaCost: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   manaPool: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   spellPower: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ castAbility(gameBoard: GameBoard)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ describe(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ describeLevelingUp(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ levelingUp()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ onTick(player: Player): Position</TD></TR>
+<TR><TD ALIGN="LEFT" >+ specialAbilityInteract(enemy: Enemy)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Player374768242[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Player</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   experience: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   level: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ accept(unit: Unit)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ castAbility(gameBoard: GameBoard)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ describe(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ describeLevelingUp(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ enemyCast(): Enemy</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initialize(position: Position, messageCallback: MessageCallback)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ levelingUp()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ onDeath()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ onTick(player: Player): Position</TD></TR>
+<TR><TD ALIGN="LEFT" >+ processStep(e: Enemy, isSpecialInteract: boolean)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ visit(e: Enemy)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ visit(p: Player)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Rogue374768242[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Rogue</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   abilityName: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   cost: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   currentEnergy: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ castAbility(gameBoard: GameBoard)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ describe(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ levelingUp()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ min(a: int, b: int): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ onTick(player: Player): Position</TD></TR>
+<TR><TD ALIGN="LEFT" >+ specialAbilityInteract(enemy: Enemy)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Warrior374768242[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Warrior</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   abilityName: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   coolDown: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   remainingCoolDown: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ castAbility(gameBoard: GameBoard)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ describe(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ levelingUp()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ onTick(player: Player): Position</TD></TR>
+<TR><TD ALIGN="LEFT" >+ specialAbilityInteract(enemy: Enemy)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_2543604 { 
+   	label=Rest
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   GameBoard2543604[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GameBoard</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   enemyies: List&lt;Enemy&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   player: Player [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   tiles: List&lt;Tile&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ findEnemiesInRange(range: int): List&lt;Enemy&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ findEnemiesInRangeLessOrEqual(range: int): List&lt;Enemy&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getTile(pos: Position): Tile</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initializeBoard(board: Tile[][])</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initializePlayer(player: Player)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ makeListOfEnmey()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ remove(e: Enemy)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GameBoardManager2543604[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GameBoardManager</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   gameBoard: GameBoard [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   messageCallback: MessageCallback [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   player: Player [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ printData()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ run()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GameFlow2543604[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GameFlow</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   TF: TileFactory [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   enemyDeathCallback: EnemyDeathCallback [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   gameBoard: GameBoard [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   listOfLevels: List&lt;File&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   messageCallback: MessageCallback [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   path: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   player: Player [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ choosePlayer(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initializeGameBoardOnEnemtBoss(gameBoard: GameBoard)</TD></TR>
+<TR><TD ALIGN="LEFT" >- loadLevels(path: String): List&lt;File&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >- makeBoardArray(level: File): Tile[][]</TD></TR>
+<TR><TD ALIGN="LEFT" >+ run()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GameTickController2543604[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GameTickController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   gameBoard: GameBoard [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   player: Player [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ gameTick()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Health2543604[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Health</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   healthAmount: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   healthPool: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ HealthLevelUp(level: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ decreaseHealth(Damage: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ increaseHealthAmount(healthRestored: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ increaseHealthPool(healthAdded: int)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Main2543604[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Main</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ main(args: String[])</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Position2543604[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Position</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   xPosition: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   yPosition: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ at(xPosition: int, yPosition: int): Position</TD></TR>
+<TR><TD ALIGN="LEFT" >+ moveDown(): Position</TD></TR>
+<TR><TD ALIGN="LEFT" >+ moveLeft(): Position</TD></TR>
+<TR><TD ALIGN="LEFT" >+ moveRight(): Position</TD></TR>
+<TR><TD ALIGN="LEFT" >+ moveUp(): Position</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+TileFactory2543604[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)TileFactory</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   enemiesMap: Map&lt;Character, Supplier&lt;Enemy&gt;&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   playersList: List&lt;Supplier&lt;Player&gt;&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   selected: Player [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- initEnemies(): Map&lt;Character, Supplier&lt;Enemy&gt;&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >- initPlayers(): List&lt;Supplier&lt;Player&gt;&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ listPlayers(): List&lt;Player&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ produceEmpty(position: Position): Empty</TD></TR>
+<TR><TD ALIGN="LEFT" >+ produceEnemy(tile: char, position: Position, messageCallback: MessageCallback, enemyDeathCallback: EnemyDeathCallback): Enemy</TD></TR>
+<TR><TD ALIGN="LEFT" >+ producePlayer(idx: int, position: Position, messageCallback: MessageCallback): Player</TD></TR>
+<TR><TD ALIGN="LEFT" >+ produceWall(position: Position): Wall</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_2606798 { 
+   	label=Tile
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Empty2606798[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Empty</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ accept(unit: Unit)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ enemyCast(): Enemy</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Tile2606798[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Tile</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   position: Position [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   tile: char [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ Range(position: Position): double</TD></TR>
+<TR><TD ALIGN="LEFT" >+ accept(unit: Unit)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ compareTo(tile: Tile): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ enemyCast(): Enemy</TD></TR>
+<TR><TD ALIGN="LEFT" ># initialize(position: Position)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Unit2606798[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Unit</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   attack: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   defense: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   health: Health [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   isAlive: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   messageCallback: MessageCallback [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   name: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" ># attack(): int</TD></TR>
+<TR><TD ALIGN="LEFT" ># battle(u: Unit)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ defend(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ describe(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initialize(position: Position, messageCallback: MessageCallback)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ interact(tile: Tile)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ onDeath()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ onTick(position: Player): Position</TD></TR>
+<TR><TD ALIGN="LEFT" >+ processStep(e: Enemy, bool: boolean)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ visit(empty: Empty)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ visit(p: Player)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ visit(e: Enemy)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Wall2606798[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Wall</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ accept(unit: Unit)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ enemyCast(): Enemy</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_59078150 { 
+   	label=Enemies
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Boss737239322[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Boss</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   abilityFrequency: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   abilityName: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   combatTicks: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   gameBoard: GameBoard [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   visionRange: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ castAbility(gameBoard: GameBoard)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ describe(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initializeGameBoard(gameBoard: GameBoard)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ onTick(player: Player): Position</TD></TR>
+<TR><TD ALIGN="LEFT" >+ specialAbilityInteract(player: Player)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Enemy737239322[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Enemy</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   enemyDeathCallback: EnemyDeathCallback [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   experienceValue: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ accept(unit: Unit)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ enemyCast(): Enemy</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initialize(position: Position, messageCallback: MessageCallback, enemyDeathCallback: EnemyDeathCallback)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initializeGameBoard(gameBoard: GameBoard)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ onDeath()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ processStep(e: Enemy, bool: boolean)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ visit(p: Player)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ visit(e: Enemy)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Monster737239322[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Monster</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   visionRange: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ initializeGameBoard(gameBoard: GameBoard)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ onTick(player: Player): Position</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Trap737239322[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Trap</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   inVisibilityTime: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   originalTile: char [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   ticksCount: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   visibilityTime: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   visible: boolean [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ describe(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initializeGameBoard(gameBoard: GameBoard)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ onTick(player: Player): Position</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+'edges    
+Empty2606798 -> Unit2606798[label="accept() -> visit()"];
+Enemy737239322 -> Boss737239322[arrowhead=none, arrowtail=empty, dir=both];
+Enemy737239322 -> Monster737239322[arrowhead=none, arrowtail=empty, dir=both];
+Enemy737239322 -> Trap737239322[arrowhead=none, arrowtail=empty, dir=both];
+GameBoard2543604 -> Enemy737239322[label="enemyies
+[0..*]"];
+GameBoard2543604 -> Player374768242[label="player
+[0..1]"];
+GameBoard2543604 -> Tile2606798[label="tiles
+[0..*]"];
+GameBoardManager2543604 -> GameBoard2543604[label="gameBoard
+[0..1]"];
+GameBoardManager2543604 -> GameTickController2543604[label="run() -> gameTick()"];
+GameBoardManager2543604 -> Player374768242[label="player
+[0..1]"];
+GameFlow2543604 -> Enemy737239322[label="initializeGameBoardOnEnemtBoss() -> initializeGameBoard()"];
+GameFlow2543604 -> GameBoard2543604[label="gameBoard
+[0..1]"];
+GameFlow2543604 -> GameBoardManager2543604[label="run() -> run()"];
+GameFlow2543604 -> Player374768242[label="player
+[0..1]"];
+GameFlow2543604 -> Position2543604[label="makeBoardArray() -> at()"];
+GameFlow2543604 -> TileFactory2543604[label="TF
+[0..1]"];
+GameTickController2543604 -> GameBoard2543604[label="gameBoard
+[0..1]"];
+GameTickController2543604 -> Player374768242[label="player
+[0..1]"];
+Main2543604 -> GameFlow2543604[label="main() -> run()"];
+Monster737239322 -> Tile2606798[label="onTick() -> Range()"];
+Player374768242 -> Boss737239322[arrowhead=none];
+Player374768242 -> Health2543604[label="levelingUp() -> HealthLevelUp()"];
+Player374768242 -> Hunter374768242[arrowhead=none, arrowtail=empty, dir=both];
+Player374768242 -> Mage374768242[arrowhead=none, arrowtail=empty, dir=both];
+Player374768242 -> Rogue374768242[arrowhead=none, arrowtail=empty, dir=both];
+Player374768242 -> Warrior374768242[arrowhead=none, arrowtail=empty, dir=both];
+Tile2606798 -> Empty2606798[arrowhead=none, arrowtail=empty, dir=both];
+Tile2606798 -> Position2543604[label="position
+[0..1]"];
+Tile2606798 -> Unit2606798[arrowhead=none, arrowtail=empty, dir=both];
+Tile2606798 -> Wall2606798[arrowhead=none, arrowtail=empty, dir=both];
+TileFactory2543604 -> Enemy737239322[label="enemiesMap
+[0..*]"];
+TileFactory2543604 -> Player374768242[label="playersList
+[0..*]"];
+TileFactory2543604 -> Player374768242[label="selected
+[0..1]"];
+Trap737239322 -> Tile2606798[label="onTick() -> Range()"];
+Unit2606798 -> Enemy737239322[arrowhead=none, arrowtail=empty, dir=both];
+Unit2606798 -> Player374768242[arrowhead=none, arrowtail=empty, dir=both];
+    
+}
+@enduml
